@@ -154,7 +154,7 @@ class Pagination{
 	function currentPage()
 	{
 		if ($this->config['current_page'] == Null){
-			$current_url = currentUrl();
+			$current_url = $this->currentUrl();
 			//we remove the part of the URL not containing the page number
 			$current_url = str_replace($this->config['base_url'] . $this->config['pages_url'], "", $current_url);
 			//we sanitize the last URL part containing the page number
@@ -195,12 +195,22 @@ class Pagination{
 	function currentUrl()
 	{
 		//we check if HTTP or HTTPS is used
-		if ($this->httpCheck()) {
-			$this->current_url = 'http://';
-		} else {
+		if ($this->httpsCheck()) {
 			$this->current_url = 'https://';
+		} else {
+			$this->current_url = 'http://';
 		}
-		$this->current_url = $this->getCurrentUrl(). $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-
+		$this->current_url = $this->current_url. $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+		return $this->current_url;
 	}
+	function httpsCheck()
+	{
+			if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443 ){
+				//https is used
+				return true;
+				} else {
+				//http is used
+				return false;
+	}
+}
 }
