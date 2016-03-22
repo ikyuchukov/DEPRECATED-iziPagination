@@ -3,7 +3,7 @@
 <?php
 //This is just a test file to show a simple use of the pagination library, just basic usage with no fancy styling
 require 'src/Pagination.php';
-use IKyuchukov\Pagination\Pagination;
+use IKyuchukov\iziPagination\Pagination;
 
 //we make a basic config array 
 //amount of rows, base url we will use ect (see README.md)

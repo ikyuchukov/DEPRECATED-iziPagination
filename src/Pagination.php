@@ -1,6 +1,6 @@
 <?php
 
-namespace IKyuchukov\Pagination;	
+namespace IKyuchukov\iziPagination;	
 
 class Pagination{
 
